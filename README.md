@@ -51,4 +51,4 @@ commit;
 ```
 
 # chunk 지향 처리
-<img width="80%" src="https://user-images.githubusercontent.com/104915851/167433353-1e35a565-4215-4ee9-ab0d-85a847df705a.png"/>
+<img width="80%" src="https://user-images.githubusercontent.com/104915851/167434908-b3519529-255f-4a98-bae9-41ccb2828bff.png"/>
