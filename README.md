@@ -8,3 +8,43 @@
 
 위 기능 중 2번 기능 사용
 ```
+
+# DDL
+```
+batch 관련 테이블 생성
+
+-- user 테이블 생성 
+create table "user" (
+  user_id varchar(60) primary key,
+  user_name varchar(60)
+);
+
+-- user for loop insert
+begin;
+
+do $$
+begin
+for i in 1..10 loop
+RAISE NOTICE 'Iterator: %', i;
+insert into "user" 
+("user_id", "user_name") 
+VALUES 
+(i, '홍길동'||i);
+end loop;
+end;
+$$;
+
+select 
+*
+from 
+"user" u ;
+
+commit;
+```
+
+
+# batch 구현
+```
+1. tasklet 방식
+2. chunk 방
+```

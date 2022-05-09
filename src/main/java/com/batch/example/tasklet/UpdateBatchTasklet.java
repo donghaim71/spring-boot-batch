@@ -1,4 +1,4 @@
-package com.batch.tasklet.tasklet;
+package com.batch.example.tasklet;
 
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -15,13 +15,13 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @StepScope
 @RequiredArgsConstructor
-public class SearchBatchTasklet implements Tasklet{
-
+public class UpdateBatchTasklet implements Tasklet{
+	
 	@Override
 	@Transactional
 	public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-
-		log.info("SearchBatchTasklet 시작");
+		
+		log.info("UpdateBatchJpaTasklet 시작");
 		
 		return RepeatStatus.FINISHED;
 	}

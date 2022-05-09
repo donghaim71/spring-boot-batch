@@ -1,5 +1,6 @@
-package com.batch.tasklet.scheduler;
+package com.batch.example.scheduler;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -7,7 +8,10 @@ import org.springframework.batch.core.repository.JobExecutionAlreadyRunningExcep
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.text.SimpleDateFormat;
@@ -17,14 +21,22 @@ import java.util.Map;
 
 @Slf4j
 @Configuration
+@RequiredArgsConstructor
+@EnableAsync
 public class JobScheduler {
 
 	@Autowired
 	private JobLauncher jobLauncher;
 
-	@Autowired
-	private Job batchTaskletJob;
+	@Qualifier("batchTaskletJob")
+	private final Job batchTaskletJob;
+	
+	@Qualifier("batchChunkJob")
+	private final Job batchChunkJob;
+	
+	
 
+	@Async
 	@Scheduled(cron = "1 * * * * *")
 	public void jobSchduled() throws JobParametersInvalidException, JobExecutionAlreadyRunningException,
 			JobRestartException, JobInstanceAlreadyCompleteException {
@@ -41,6 +53,10 @@ public class JobScheduler {
 		JobParameters parameters = new JobParameters(jobParametersMap);
 
 		JobExecution jobExecution = jobLauncher.run(batchTaskletJob, parameters);
+		
+		JobExecution chunkJobExecution = jobLauncher.run(batchChunkJob, parameters);
+		
+		
 
 		while (jobExecution.isRunning()) {
 			log.info("...");

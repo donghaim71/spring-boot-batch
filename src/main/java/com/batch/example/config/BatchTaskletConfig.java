@@ -1,4 +1,4 @@
-package com.batch.tasklet.config;
+package com.batch.example.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,8 +11,8 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.batch.tasklet.tasklet.SearchBatchTasklet;
-import com.batch.tasklet.tasklet.UpdateBatchTasklet;
+import com.batch.example.tasklet.SearchBatchTasklet;
+import com.batch.example.tasklet.UpdateBatchTasklet;
 
 @Slf4j
 @RequiredArgsConstructor
