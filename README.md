@@ -46,5 +46,9 @@ commit;
 # batch 구현
 ```
 1. tasklet 방식
-2. chunk 방
+2. chunk 방식
+3. scheduling 비동기 처리
 ```
+
+# chunk 지향 처리
+<img width="80%" src="https://user-images.githubusercontent.com/104915851/167433353-1e35a565-4215-4ee9-ab0d-85a847df705a.png"/>
